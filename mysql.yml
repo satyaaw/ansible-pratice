@@ -1,0 +1,19 @@
+- name: Expense mysql setup
+  hosts: all
+  become: yes
+  tasks:
+    - name: Disable Mysql
+      ansible.builtin.shell: dnf module disable mysql -y
+    - name: Copy Mysql Repo File
+      ansible.builtin.copy:
+        src: mysql.repo
+        dest: /etc/yum.repos.d/mysql.repo
+    - name: Install My Sql Server
+      ansible.builtin.dnf:
+        name: mysql-community-server
+        state: present
+    - name: Start Mysql Server
+      ansible.builtin.systemd:
+        name: mysqld
+        state: restarted
+        enabled: yes
