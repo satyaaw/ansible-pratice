@@ -4,10 +4,10 @@
     state: absent
 - name: Create app Direcroy
   ansible.builtin.file:
-    path: "{{ app_for }}"
+    path: "{{ app_dir }}"
     state: directory
 - name: Download and Extract
   ansible.builtin.unarchive:
     src: https://expense-artifacts.s3.amazonaws.com/{{ common_file }}.zip
-    dest: "{{ app_for }}"
+    dest: "{{ app_dir }}"
     remote_src: yes
