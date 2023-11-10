@@ -1,0 +1,13 @@
+- name: Delete Old App
+  ansible.builtin.file:
+    path: "{{ app_dir }}"
+    state: absent
+- name: Create app Direcroy
+  ansible.builtin.file:
+    path: "{{ app_for }}"
+    state: directory
+- name: Download and Extract
+  ansible.builtin.unarchive:
+    src: https://expense-artifacts.s3.amazonaws.com/{{ common_file }}.zip
+    dest: "{{ app_for }}"
+    remote_src: yes
