@@ -22,14 +22,14 @@ filebeat.inputs:
   - type: filestream
 
     # Unique ID among all inputs, an ID is required.
-    id: { { component } }
+    id: {{ component }}
 
     # Change to true to enable this input configuration.
     enabled: True
 
     # Paths that should be crawled and fetched. Glob based paths.
     paths:
-      - { { log_file } }
+      - {{ log_file }}
       #- c:\programdata\elasticsearch\logs\*
 
     # Exclude lines. A list of regular expressions to match. It drops the lines that are
@@ -149,7 +149,7 @@ setup.kibana:
   #password: "changeme"
 
   # ------------------------------ Logstash Output -------------------------------
-  output.logstash:
+output.logstash:
 #   The Logstash /hosts
   hosts: ["172.31.74.250:5044"]
 
